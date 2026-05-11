@@ -1,17 +1,505 @@
 ---
+const brandName = "The Vibe Crew";
+const siteUrl = "https://thevibecrew.dev";
+const title = `${brandName} | Senior Engineers for AI Codebase Cleanup`;
+const description =
+	"The Vibe Crew helps teams stabilize fragile AI-generated apps, reduce technical debt, and ship maintainable software with senior engineering support.";
+const keywords = [
+	"The Vibe Crew",
+	"technical debt cleanup service",
+	"AI generated code review",
+	"codebase refactoring experts",
+	"software maintainability",
+	"legacy app stabilization",
+	"vibe coding cleanup crew"
+].join(", ");
 
+const faqs = [
+	{
+		question: "What does The Vibe Crew do?",
+		answer:
+			"We review and remediate unstable software projects, especially AI-generated codebases that became hard to maintain, test, and ship safely."
+	},
+	{
+		question: "How quickly should we fix AI-generated technical debt?",
+		answer:
+			"Teams usually need intervention early, because unresolved debt compounds quickly and can block delivery in a matter of months."
+	},
+	{
+		question: "What is included in a cleanup engagement?",
+		answer:
+			"Audit, risk map, architecture simplification, refactors, test hardening, and a practical roadmap so your team can maintain velocity."
+	},
+	{
+		question: "Do you only work with startups?",
+		answer:
+			"No. We support startups, agencies, and product teams that need a senior software engineering cleanup partner."
+	}
+];
+
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: brandName,
+	url: siteUrl,
+	description,
+	areaServed: "Worldwide",
+	serviceType: "Technical debt remediation and codebase cleanup",
+	knowsAbout: [
+		"Technical Debt",
+		"AI-assisted Development",
+		"Codebase Maintainability",
+		"Software Refactoring",
+		"Architecture Review"
+	]
+};
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqs.map((item) => ({
+		"@type": "Question",
+		name: item.question,
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: item.answer
+		}
+	}))
+};
 ---
 
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
+		<link rel="canonical" href={siteUrl} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<style>
+			:root {
+				color-scheme: light;
+				--bg: #f7efe2;
+				--paper: #fff7eb;
+				--text: #191919;
+				--muted: #4d4d4d;
+				--line: #191919;
+				--accent: #f4c7dc;
+				--accent-2: #ffd958;
+				--surface: #ffffff;
+				--shadow: 6px 6px 0 #191919;
+				--radius: 18px;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: var(--bg);
+				color: var(--text);
+				font-family: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+				line-height: 1.5;
+			}
+
+			a {
+				color: inherit;
+			}
+
+			.page {
+				max-width: 1120px;
+				margin: 0 auto;
+				padding: 1.2rem 1rem 4rem;
+			}
+
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 2rem;
+				padding: 0.7rem 0.9rem;
+				border: 2px solid var(--line);
+				background: var(--surface);
+				border-radius: 999px;
+				box-shadow: 3px 3px 0 var(--line);
+			}
+
+			.logo {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
+
+			.logo-mark {
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				border: 2px solid var(--line);
+				background: var(--accent-2);
+			}
+
+			.nav-cta {
+				text-decoration: none;
+				border: 2px solid var(--line);
+				padding: 0.45rem 0.85rem;
+				border-radius: 999px;
+				background: var(--text);
+				color: #fff;
+				font-weight: 700;
+			}
+
+			.hero {
+				display: grid;
+				gap: 1.2rem;
+				padding: 1.5rem;
+				border: 2px solid var(--line);
+				border-radius: var(--radius);
+				background: linear-gradient(130deg, var(--paper) 0%, #fff 56%, var(--accent) 100%);
+				box-shadow: var(--shadow);
+			}
+
+			.kicker {
+				display: inline-block;
+				align-self: start;
+				padding: 0.25rem 0.65rem;
+				background: var(--accent-2);
+				border: 2px solid var(--line);
+				border-radius: 999px;
+				font-weight: 700;
+				font-size: 0.82rem;
+				letter-spacing: 0.02em;
+				text-transform: uppercase;
+			}
+
+			h1,
+			h2,
+			h3 {
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				margin: 0;
+			}
+
+			h1 {
+				font-size: clamp(1.95rem, 4.8vw, 4.2rem);
+				max-width: 16ch;
+			}
+
+			.hero p {
+				margin: 0;
+				font-size: clamp(1rem, 2.1vw, 1.25rem);
+				max-width: 63ch;
+				color: var(--muted);
+			}
+
+			.hero-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+			}
+
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.74rem 1rem;
+				border-radius: 14px;
+				font-weight: 700;
+				text-decoration: none;
+				border: 2px solid var(--line);
+				transition: transform 140ms ease;
+			}
+
+			.btn:hover {
+				transform: translate(-1px, -1px);
+			}
+
+			.btn-primary {
+				background: var(--text);
+				color: #fff;
+			}
+
+			.btn-secondary {
+				background: #fff;
+			}
+
+			.section {
+				margin-top: 2rem;
+				display: grid;
+				gap: 1rem;
+			}
+
+			.section-title {
+				font-size: clamp(1.4rem, 3vw, 2.2rem);
+			}
+
+			.cards {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 1rem;
+			}
+
+			.card {
+				grid-column: span 12;
+				padding: 1rem;
+				border: 2px solid var(--line);
+				border-radius: 15px;
+				background: var(--surface);
+				box-shadow: 4px 4px 0 var(--line);
+			}
+
+			.card p {
+				margin: 0.55rem 0 0;
+				color: var(--muted);
+			}
+
+			.answer-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 1rem;
+			}
+
+			.answer {
+				grid-column: span 12;
+				padding: 1rem;
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: #fff;
+			}
+
+			.answer strong {
+				display: inline-block;
+				margin-bottom: 0.4rem;
+			}
+
+			.timeline {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 0.8rem;
+			}
+
+			.timeline li {
+				padding: 0.95rem;
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: #fff;
+			}
+
+			.timeline span {
+				font-weight: 800;
+				display: block;
+				margin-bottom: 0.2rem;
+			}
+
+			.faq {
+				display: grid;
+				gap: 0.65rem;
+			}
+
+			.faq details {
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: #fff;
+				padding: 0.8rem 0.95rem;
+			}
+
+			.faq summary {
+				cursor: pointer;
+				font-weight: 700;
+			}
+
+			.cta {
+				margin-top: 2.2rem;
+				padding: 1.2rem;
+				border: 2px solid var(--line);
+				background: var(--accent-2);
+				border-radius: var(--radius);
+				box-shadow: var(--shadow);
+			}
+
+			.cta p {
+				margin: 0.6rem 0 0;
+				color: #2b2b2b;
+			}
+
+			.footer {
+				margin-top: 1.8rem;
+				font-size: 0.95rem;
+				color: var(--muted);
+			}
+
+			@media (min-width: 760px) {
+				.card.span-6 {
+					grid-column: span 6;
+				}
+
+				.card.span-4 {
+					grid-column: span 4;
+				}
+
+				.answer {
+					grid-column: span 4;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="page">
+			<header class="nav">
+				<div class="logo">
+					<span class="logo-mark" aria-hidden="true"></span>
+					<span>{brandName}</span>
+				</div>
+				<a class="nav-cta" href="#book">Book a Cleanup Call</a>
+			</header>
+
+			<main>
+				<section class="hero">
+					<span class="kicker">Senior engineers. Human-led cleanup.</span>
+					<h1>We rescue AI-built apps before technical debt takes them down.</h1>
+					<p>
+						{brandName} is a software engineering team focused on codebase cleanup and technical debt
+						remediation. We help product teams turn fragile, overgrown AI-generated projects into stable,
+						testable, maintainable systems.
+					</p>
+					<div class="hero-actions">
+						<a class="btn btn-primary" id="book" href="mailto:hello@thevibecrew.dev?subject=Codebase%20Cleanup%20Request">Start your cleanup sprint</a>
+						<a class="btn btn-secondary" href="#faq">See common questions</a>
+					</div>
+				</section>
+
+				<section class="section" aria-labelledby="problem-title">
+					<h2 class="section-title" id="problem-title">Why this matters right now</h2>
+					<div class="cards">
+						<article class="card span-4">
+							<h3>AI can compound debt</h3>
+							<p>We often see tools generate new complexity while trying to patch old issues, making systems harder to reason about.</p>
+						</article>
+						<article class="card span-4">
+							<h3>Bad debt is fragile debt</h3>
+							<p>Some debt is strategic; unstable debt is different. It creates “house of cards” architecture where small changes break core flows.</p>
+						</article>
+						<article class="card span-4">
+							<h3>Delay increases risk</h3>
+							<p>What looks shippable today can become unmaintainable in months without targeted refactoring and clear engineering ownership.</p>
+						</article>
+					</div>
+				</section>
+
+				<section class="section" aria-labelledby="services-title">
+					<h2 class="section-title" id="services-title">What The Vibe Crew delivers</h2>
+					<div class="cards">
+						<article class="card span-6">
+							<h3>Codebase triage & risk report</h3>
+							<p>We audit architecture, dependencies, testing gaps, and release risk so you know exactly where entropy is accumulating.</p>
+						</article>
+						<article class="card span-6">
+							<h3>Technical debt cleanup sprint</h3>
+							<p>We execute high-impact refactors, simplify the system, and improve maintainability without freezing product progress.</p>
+						</article>
+						<article class="card span-6">
+							<h3>Maintainability baseline</h3>
+							<p>We leave behind measurable standards: clearer boundaries, test confidence, and an actionable roadmap your team can sustain.</p>
+						</article>
+						<article class="card span-6">
+							<h3>Senior engineering partner</h3>
+							<p>You work with experienced software engineers, not generic prompts, for pragmatic decisions tied to business outcomes.</p>
+						</article>
+					</div>
+				</section>
+
+				<section class="section" aria-labelledby="answers-title">
+					<h2 class="section-title" id="answers-title">Quick answers for search, AI assistants, and decision-makers</h2>
+					<div class="answer-grid">
+						<article class="answer">
+							<strong>What is technical debt?</strong>
+							<div>Technical debt is future rework created by fast choices made today. Some debt is acceptable; unstable debt must be resolved quickly.</div>
+						</article>
+						<article class="answer">
+							<strong>What is AI-assisted development risk?</strong>
+							<div>Without engineering oversight, AI-generated code can produce hidden complexity, brittle integrations, and maintenance bottlenecks.</div>
+						</article>
+						<article class="answer">
+							<strong>Who should hire a cleanup crew?</strong>
+							<div>Any team with growing delivery friction, fragile releases, or oversized codebases that outpaced architecture and quality controls.</div>
+						</article>
+					</div>
+				</section>
+
+				<section class="section" aria-labelledby="process-title">
+					<h2 class="section-title" id="process-title">How our cleanup process works</h2>
+					<ol class="timeline">
+						<li>
+							<span>Step 1 — Initial engagement</span>
+							We align on product goals, urgent failures, and the release pressure your team faces.
+						</li>
+						<li>
+							<span>Step 2 — Code inspection</span>
+							We inspect architecture and identify where AI-generated changes expanded risk and complexity.
+						</li>
+						<li>
+							<span>Step 3 — Debt analysis</span>
+							We map compounding technical debt, prioritize fixes, and define a practical remediation sequence.
+						</li>
+						<li>
+							<span>Step 4 — Guided remediation</span>
+							We refactor fragile areas, harden quality, and transfer maintainable practices to your team.
+						</li>
+					</ol>
+				</section>
+
+				<section class="section" id="faq" aria-labelledby="faq-title">
+					<h2 class="section-title" id="faq-title">FAQ</h2>
+					<div class="faq">
+						{
+							faqs.map((item) => (
+								<details>
+									<summary>{item.question}</summary>
+									<p>{item.answer}</p>
+								</details>
+							))
+						}
+					</div>
+				</section>
+
+				<section class="cta" aria-labelledby="cta-title">
+					<h2 id="cta-title">Your app can feel fast again without rebuilding from zero.</h2>
+					<p>
+						If your AI-generated codebase is turning into a maintenance trap, bring in {brandName} to
+						stabilize it and get shipping velocity back.
+					</p>
+					<p>
+						<a class="btn btn-primary" href="mailto:hello@thevibecrew.dev?subject=Book%20The%20Vibe%20Crew">Book The Vibe Crew</a>
+					</p>
+				</section>
+			</main>
+
+			<footer class="footer">
+				<p>{brandName} · Technical debt remediation for AI-assisted software projects · Serving teams worldwide.</p>
+			</footer>
+		</div>
 	</body>
 </html>

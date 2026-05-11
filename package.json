@@ -1,9 +1,9 @@
 {
-  "name": "users-home-development-projects-psyche-daily-the-vibe-crew",
+  "name": "the-vibe-crew-landing",
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -12,6 +12,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.3.1"
+    "astro": "^4.16.19"
   }
 }
