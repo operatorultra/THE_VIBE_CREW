@@ -1,9 +1,9 @@
 ---
 const brandName = "The Vibe Crew";
 const siteUrl = "https://thevibecrew.dev";
-const title = `${brandName} | Senior Engineers for Vibe-Coded Project Cleanup`;
+const title = `${brandName} | 10+ Years of Engineering Expertise for Vibe-Coded Cleanup`;
 const description =
-	"The Vibe Crew helps teams stabilize fragile Vibe-coded apps, reduce technical debt, and ship maintainable software with senior engineering support.";
+	"The Vibe Crew helps teams stabilize fragile vibe-coded apps, reduce technical debt, and ship maintainable software with more than a decade of engineering expertise.";
 const keywords = [
 	"The Vibe Crew",
 	"technical debt cleanup service",
@@ -28,12 +28,12 @@ const faqs = [
 	{
 		question: "What is included in a cleanup engagement?",
 		answer:
-			"Audit, risk map, architecture simplification, refactors, test hardening, and a practical roadmap so your team can maintain velocity."
+			"Audit, risk map, architecture simplification, refactors, test hardening, and a practical roadmap we execute with clear ownership."
 	},
 	{
 		question: "Do you only work with startups?",
 		answer:
-			"No. We support startups, agencies, and product teams that need a senior software engineering cleanup partner."
+			"No. We support startups, agencies, and product teams that need a software engineering cleanup partner with more than a decade of expertise."
 	}
 ];
 
@@ -103,6 +103,8 @@ const faqSchema = {
 				--surface: #ffffff;
 				--shadow: 6px 6px 0 #191919;
 				--radius: 18px;
+				--tone-a: #fff9ef;
+				--tone-b: #fff4fb;
 			}
 
 			*,
@@ -249,9 +251,33 @@ const faqSchema = {
 				display: grid;
 				gap: 1rem;
 			}
+			.section-focus {
+				padding: 1.15rem;
+				border: 2px solid var(--line);
+				border-radius: 16px;
+				box-shadow: 5px 5px 0 var(--line);
+			}
+
+			.tone-a {
+				background: var(--tone-a);
+			}
+
+			.tone-b {
+				background: var(--tone-b);
+			}
+
+			.section-head {
+				display: grid;
+				gap: 0.45rem;
+			}
 
 			.section-title {
 				font-size: clamp(1.4rem, 3vw, 2.2rem);
+			}
+			.section-lead {
+				margin: 0;
+				max-width: 64ch;
+				color: var(--muted);
 			}
 
 			.cards {
@@ -378,8 +404,8 @@ const faqSchema = {
 
 			<main>
 				<section class="hero">
-					<span class="kicker">Senior engineers. Human-led cleanup.</span>
-					<h1>We rescue vibe-coded projects before technical debt takes them down.</h1>
+					<span class="kicker">10+ years of engineering expertise. Human-led cleanup.</span>
+					<h1>We get vibe-coded projects production-ready.</h1>
 					<p>
 						{brandName} is a software engineering team focused on codebase cleanup and technical debt
 						remediation. We help product teams turn fragile, overgrown vibe-coded projects into stable,
@@ -391,8 +417,11 @@ const faqSchema = {
 					</div>
 				</section>
 
-				<section class="section" aria-labelledby="problem-title">
-					<h2 class="section-title" id="problem-title">Why this matters right now</h2>
+				<section class="section section-focus tone-a" aria-labelledby="problem-title">
+					<div class="section-head">
+						<h2 class="section-title" id="problem-title">Why this matters right now</h2>
+						<p class="section-lead">Vibe-coded projects can move fast early, then hit hidden debt that slows everything down.</p>
+					</div>
 					<div class="cards">
 						<article class="card span-4">
 							<h3>AI can compound debt</h3>
@@ -409,8 +438,11 @@ const faqSchema = {
 					</div>
 				</section>
 
-				<section class="section" aria-labelledby="services-title">
-					<h2 class="section-title" id="services-title">Our 2-step cleanup method</h2>
+				<section class="section section-focus tone-b" aria-labelledby="services-title">
+					<div class="section-head">
+						<h2 class="section-title" id="services-title">Our 2-step cleanup method</h2>
+						<p class="section-lead">The model is intentionally repetitive: we assess first, then we clean up in clear scope order.</p>
+					</div>
 					<div class="cards">
 						<article class="card span-6">
 							<h3>1) Deep assessment</h3>
@@ -418,13 +450,44 @@ const faqSchema = {
 						</article>
 						<article class="card span-6">
 							<h3>2) Clear scoped roadmap</h3>
-							<p>We deliver a roadmap with issues clearly scoped, prioritized by risk and impact, so your team can execute without guesswork.</p>
+							<p>We deliver a roadmap with issues clearly scoped and prioritized by risk and impact, then we clean up in that order without guesswork.</p>
+						</article>
+					</div>
+				</section>
+				<section class="section section-focus tone-a" aria-labelledby="platform-title">
+					<div class="section-head">
+						<h2 class="section-title" id="platform-title">Platform vision: assessment + matching + scoped execution</h2>
+						<p class="section-lead">We are evolving this service into a platform where vibe coders get matched with experienced engineers who know their stack.</p>
+					</div>
+					<div class="cards">
+						<article class="card span-4">
+							<h3>1) Assess technical state</h3>
+							<p>The platform evaluates the current technical state, maps risk, and clarifies what is worth fixing before launch.</p>
+						</article>
+						<article class="card span-4">
+							<h3>2) Match with stack-fit engineers</h3>
+							<p>Products are matched with one or more experienced developers who have direct expertise in the relevant stack.</p>
+						</article>
+						<article class="card span-4">
+							<h3>3) Scope + timeline</h3>
+							<p>We convert findings into a clear scope, phased timeline, and issue-by-issue execution sequence.</p>
+						</article>
+						<article class="card span-6">
+							<h3>Engineer onboarding via LinkedIn</h3>
+							<p>Engineers add a LinkedIn profile link, we enrich their profile automatically, and then suggest them to matching products by stack fit.</p>
+						</article>
+						<article class="card span-6">
+							<h3>Built for launch and traction-stage apps</h3>
+							<p>The core offer gets products launch-ready, and also supports launched apps with traction that now face deeper engineering complexity.</p>
 						</article>
 					</div>
 				</section>
 
-				<section class="section" aria-labelledby="answers-title">
-					<h2 class="section-title" id="answers-title">Quick answers for search, AI assistants, and decision-makers</h2>
+				<section class="section section-focus tone-a" aria-labelledby="answers-title">
+					<div class="section-head">
+						<h2 class="section-title" id="answers-title">Quick answers for search, AI assistants, and decision-makers</h2>
+						<p class="section-lead">Short direct answers improve readability and make the page easier for retrieval systems to parse.</p>
+					</div>
 					<div class="answer-grid">
 						<article class="answer">
 							<strong>What is technical debt?</strong>
@@ -441,12 +504,15 @@ const faqSchema = {
 					</div>
 				</section>
 
-				<section class="section" aria-labelledby="process-title">
-					<h2 class="section-title" id="process-title">How our cleanup process works</h2>
+				<section class="section section-focus tone-b" aria-labelledby="process-title">
+					<div class="section-head">
+						<h2 class="section-title" id="process-title">How our cleanup process works</h2>
+						<p class="section-lead">We follow the same engagement rhythm every time so delivery stays predictable.</p>
+					</div>
 					<ol class="timeline">
 						<li>
 							<span>Step 1 — Initial engagement</span>
-							We align on product goals, urgent failures, and the release pressure your team faces.
+							We align on product goals, urgent failures, and release pressure.
 						</li>
 						<li>
 							<span>Step 2 — Code inspection</span>
@@ -458,13 +524,16 @@ const faqSchema = {
 						</li>
 						<li>
 							<span>Step 4 — Guided remediation</span>
-							We refactor fragile areas, harden quality, and transfer maintainable practices to your team.
+							We refactor fragile areas, harden quality, and clean up the codebase into a maintainable system.
 						</li>
 					</ol>
 				</section>
 
-				<section class="section" id="faq" aria-labelledby="faq-title">
-					<h2 class="section-title" id="faq-title">FAQ</h2>
+				<section class="section section-focus tone-a" id="faq" aria-labelledby="faq-title">
+					<div class="section-head">
+						<h2 class="section-title" id="faq-title">FAQ</h2>
+						<p class="section-lead">Fast answers before we start.</p>
+					</div>
 					<div class="faq">
 						{
 							faqs.map((item) => (
@@ -477,6 +546,26 @@ const faqSchema = {
 					</div>
 				</section>
 
+				<section class="section section-focus tone-b" aria-labelledby="boundaries-title">
+					<div class="section-head">
+						<h2 class="section-title" id="boundaries-title">What we don’t do</h2>
+						<p class="section-lead">Clear boundaries keep cleanup fast, scoped, and execution-focused.</p>
+					</div>
+					<div class="cards">
+						<article class="card span-4">
+							<h3>No business-operation role</h3>
+							<p>We don’t run your business or provide business advice.</p>
+						</article>
+						<article class="card span-4">
+							<h3>No ongoing maintenance retainer</h3>
+							<p>We don’t do ongoing maintenance after the scoped cleanup engagement.</p>
+						</article>
+						<article class="card span-4">
+							<h3>No net-new feature builds</h3>
+							<p>We don’t build new features inside cleanup projects.</p>
+						</article>
+					</div>
+				</section>
 				<section class="cta" aria-labelledby="cta-title">
 					<h2 id="cta-title">Your app can feel fast again without rebuilding from zero.</h2>
 					<p>
