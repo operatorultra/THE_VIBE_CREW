@@ -1,0 +1,380 @@
+---
+const brandName = "The Vibe Crew";
+const siteUrl = "https://thevibecrew.dev/apply";
+const title = `${brandName} | Apply for Assessment`;
+const description =
+	"Apply for a Vibe Crew assessment by sharing your project details, contact information, concept, and relevant links.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="canonical" href={siteUrl} />
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<style>
+			:root {
+				color-scheme: light;
+				--bg: #f7efe2;
+				--text: #191919;
+				--muted: #4d4d4d;
+				--line: #191919;
+				--accent: #ffd958;
+				--surface: #ffffff;
+				--shadow: 6px 6px 0 #191919;
+				--radius: 18px;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: var(--bg);
+				color: var(--text);
+				font-family: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+				line-height: 1.5;
+			}
+
+			.page {
+				max-width: 860px;
+				margin: 0 auto;
+				padding: 1.2rem 1rem 4rem;
+			}
+
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.6rem;
+				padding: 0.7rem 0.9rem;
+				border: 2px solid var(--line);
+				background: var(--surface);
+				border-radius: 999px;
+				box-shadow: 3px 3px 0 var(--line);
+			}
+
+			.logo {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
+
+			.logo-mark {
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				border: 2px solid var(--line);
+				background: var(--accent);
+			}
+
+			.nav-link {
+				text-decoration: none;
+				border: 2px solid var(--line);
+				padding: 0.4rem 0.85rem;
+				border-radius: 999px;
+				background: var(--surface);
+				font-weight: 700;
+			}
+
+			.wrap {
+				padding: 1.25rem;
+				border: 2px solid var(--line);
+				border-radius: var(--radius);
+				background: #fff;
+				box-shadow: var(--shadow);
+				display: grid;
+				gap: 1rem;
+			}
+
+			h1,
+			h2,
+			h3 {
+				margin: 0;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+			}
+
+			h1 {
+				font-size: clamp(1.7rem, 4.2vw, 2.7rem);
+			}
+
+			.lead {
+				margin: 0;
+				color: var(--muted);
+				max-width: 60ch;
+			}
+
+			.apply-form {
+				display: grid;
+				gap: 0.95rem;
+			}
+
+			.form-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 0.8rem;
+			}
+
+			.field {
+				grid-column: span 12;
+				display: grid;
+				gap: 0.35rem;
+			}
+
+			.field span {
+				font-weight: 700;
+				font-size: 0.95rem;
+			}
+
+			.field input,
+			.field textarea {
+				width: 100%;
+				border: 2px solid var(--line);
+				border-radius: 10px;
+				background: #fff;
+				color: var(--text);
+				padding: 0.65rem 0.75rem;
+				font: inherit;
+			}
+
+			.field input:focus,
+			.field textarea:focus {
+				outline: 3px solid #19191933;
+				outline-offset: 1px;
+			}
+
+			.field textarea {
+				min-height: 120px;
+				resize: vertical;
+			}
+
+			.form-help {
+				margin: 0;
+				font-size: 0.92rem;
+				color: var(--muted);
+			}
+
+			.form-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7rem;
+			}
+
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.74rem 1rem;
+				border-radius: 14px;
+				font-weight: 700;
+				text-decoration: none;
+				border: 2px solid var(--line);
+				background: #fff;
+				cursor: pointer;
+				font: inherit;
+			}
+
+			.btn-primary {
+				background: var(--text);
+				color: #fff;
+			}
+
+			.form-status {
+				margin: 0.15rem 0 0;
+				font-size: 0.94rem;
+				font-weight: 600;
+			}
+
+			@media (min-width: 760px) {
+				.field.span-6 {
+					grid-column: span 6;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<header class="nav">
+				<div class="logo">
+					<span class="logo-mark" aria-hidden="true"></span>
+					<span>{brandName}</span>
+				</div>
+				<a class="nav-link" href="/">Back to home</a>
+			</header>
+			<main class="wrap">
+				<h1>Apply for assessment</h1>
+				<p class="lead">Share your project details and we will review your application. At least one contact method is required: email or phone.</p>
+				<form class="apply-form" id="assessment-form" novalidate>
+					<div class="form-grid">
+						<label class="field span-6">
+							<span>Your name *</span>
+							<input name="name" type="text" autocomplete="name" required />
+						</label>
+						<label class="field span-6">
+							<span>Project landing page</span>
+							<input name="landingPage" type="url" placeholder="https://your-project.com" />
+						</label>
+						<label class="field span-6">
+							<span>Email</span>
+							<input name="email" type="email" autocomplete="email" placeholder="you@company.com" />
+						</label>
+						<label class="field span-6">
+							<span>Phone number</span>
+							<input name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" />
+						</label>
+						<label class="field">
+							<span>Short concept description *</span>
+							<textarea name="concept" placeholder="What are you building, who is it for, and what is the current technical challenge?" required></textarea>
+						</label>
+						<label class="field">
+							<span>Relevant links / socials</span>
+							<textarea name="links" placeholder="GitHub, docs, product links, social profiles, demos, Loom videos, etc."></textarea>
+						</label>
+					</div>
+					<p class="form-help">Choose submit only, or submit and request call booking options.</p>
+					<div class="form-actions">
+						<button class="btn btn-primary" type="submit" data-intent="submit">Submit application</button>
+						<button class="btn" type="submit" data-intent="submit-book">Submit &amp; book a call</button>
+					</div>
+					<p class="form-status" id="assessment-status" role="status" aria-live="polite"></p>
+				</form>
+			</main>
+		</div>
+		<script>
+			const assessmentForm = document.getElementById("assessment-form");
+			const statusEl = document.getElementById("assessment-status");
+
+			if (assessmentForm) {
+				const emailInput = assessmentForm.querySelector("input[name='email']");
+				const phoneInput = assessmentForm.querySelector("input[name='phone']");
+				let submitIntent = "submit";
+
+				const intentButtons = assessmentForm.querySelectorAll("button[type='submit'][data-intent]");
+				intentButtons.forEach((button) => {
+					button.addEventListener("click", () => {
+						submitIntent = button.dataset.intent || "submit";
+					});
+				});
+
+				const setSubmitting = (isSubmitting) => {
+					intentButtons.forEach((button) => {
+						button.disabled = isSubmitting;
+						button.style.opacity = isSubmitting ? "0.7" : "1";
+						button.style.cursor = isSubmitting ? "not-allowed" : "pointer";
+					});
+				};
+
+				const ensureContactMethod = () => {
+					const hasEmail = emailInput && emailInput.value.trim().length > 0;
+					const hasPhone = phoneInput && phoneInput.value.trim().length > 0;
+					const message = hasEmail || hasPhone ? "" : "Provide at least one contact method: email or phone.";
+
+					if (emailInput) {
+						emailInput.setCustomValidity(message);
+					}
+
+					if (phoneInput) {
+						phoneInput.setCustomValidity(message);
+					}
+
+					return hasEmail || hasPhone;
+				};
+
+				if (emailInput) {
+					emailInput.addEventListener("input", ensureContactMethod);
+				}
+
+				if (phoneInput) {
+					phoneInput.addEventListener("input", ensureContactMethod);
+				}
+
+				assessmentForm.addEventListener("submit", (event) => {
+					event.preventDefault();
+					const hasContact = ensureContactMethod();
+					const hasRequiredFields = assessmentForm.reportValidity();
+
+					if (!hasContact || !hasRequiredFields) {
+						return;
+					}
+
+					const formData = new FormData(assessmentForm);
+					const name = (formData.get("name") || "").toString().trim();
+					const landingPage = (formData.get("landingPage") || "").toString().trim();
+					const email = (formData.get("email") || "").toString().trim();
+					const phone = (formData.get("phone") || "").toString().trim();
+					const concept = (formData.get("concept") || "").toString().trim();
+					const links = (formData.get("links") || "").toString().trim();
+
+					const payload = {
+						name,
+						landingPage,
+						email,
+						phone,
+						concept,
+						links,
+						submitIntent,
+					};
+
+					if (statusEl) {
+						statusEl.textContent = "Submitting your application...";
+					}
+
+					setSubmitting(true);
+
+					fetch("/api/assessment", {
+						method: "POST",
+						headers: {
+							"content-type": "application/json",
+						},
+						body: JSON.stringify(payload),
+					})
+						.then(async (response) => {
+							const data = await response.json().catch(() => null);
+							if (!response.ok || !data?.ok) {
+								const message =
+									data?.error || "Submission failed. Please try again or email hello@thevibecrew.dev.";
+								throw new Error(message);
+							}
+
+							if (statusEl) {
+								statusEl.textContent =
+									submitIntent === "submit-book"
+										? "Application submitted. Redirecting to call booking..."
+										: "Application submitted. Check your email for confirmation.";
+							}
+
+							assessmentForm.reset();
+							ensureContactMethod();
+
+							if (submitIntent === "submit-book" && data.bookingUrl) {
+								window.location.href = data.bookingUrl;
+							}
+						})
+						.catch((error) => {
+							if (statusEl) {
+								statusEl.textContent = error.message;
+							}
+						})
+						.finally(() => {
+							setSubmitting(false);
+						});
+				});
+			}
+		</script>
+	</body>
+</html>
