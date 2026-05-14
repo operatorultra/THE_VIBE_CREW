@@ -218,7 +218,7 @@ const description =
 			</header>
 			<main class="wrap">
 				<h1>Apply for assessment</h1>
-				<p class="lead">Share your project details and we will review your application. At least one contact method is required: email or phone.</p>
+				<p class="lead">Share your project details and choose your path: standard application review (typically within 10 working days) or paid priority call booking.</p>
 				<form class="apply-form" id="assessment-form" novalidate>
 					<div class="form-grid">
 						<label class="field span-6">
@@ -246,10 +246,10 @@ const description =
 							<textarea name="links" placeholder="GitHub, docs, product links, social profiles, demos, Loom videos, etc."></textarea>
 						</label>
 					</div>
-					<p class="form-help">Choose submit only, or submit and request call booking options.</p>
+					<p class="form-help">At least one contact method is required: email or phone.</p>
 					<div class="form-actions">
 						<button class="btn btn-primary" type="submit" data-intent="submit">Submit application</button>
-						<button class="btn" type="submit" data-intent="submit-book">Submit &amp; book a call</button>
+						<button class="btn" type="submit" data-intent="submit-book">Pay to book a priority call</button>
 					</div>
 					<p class="form-status" id="assessment-status" role="status" aria-live="polite"></p>
 				</form>
@@ -350,19 +350,23 @@ const description =
 									data?.error || "Submission failed. Please try again or email hello@thevibecrew.dev.";
 								throw new Error(message);
 							}
+							const checkoutUrl = data?.checkoutUrl;
 
 							if (statusEl) {
-								statusEl.textContent =
-									submitIntent === "submit-book"
-										? "Application submitted. Redirecting to call booking..."
-										: "Application submitted. Check your email for confirmation.";
+								if (submitIntent === "submit-book") {
+									statusEl.textContent = checkoutUrl
+										? "Application submitted. Redirecting to Stripe checkout..."
+										: "Application submitted. We’ll reply with payment and booking details.";
+								} else {
+									statusEl.textContent = "Application submitted. Expect a reply within 10 working days.";
+								}
 							}
 
 							assessmentForm.reset();
 							ensureContactMethod();
 
-							if (submitIntent === "submit-book" && data.bookingUrl) {
-								window.location.href = data.bookingUrl;
+							if (submitIntent === "submit-book" && checkoutUrl) {
+								window.location.href = checkoutUrl;
 							}
 						})
 						.catch((error) => {

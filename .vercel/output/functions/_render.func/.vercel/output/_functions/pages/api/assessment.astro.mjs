@@ -30,6 +30,7 @@ const POST = async ({ request }) => {
     const concept = clean(payload.concept);
     const links = clean(payload.links);
     const submitIntent = clean(payload.submitIntent) === "submit-book" ? "submit-book" : "submit";
+    const priorityCheckoutUrl = process.env.STRIPE_PRIORITY_CALL_URL || process.env.BOOKING_URL || null;
     const userAgent = request.headers.get("user-agent") ?? "";
     if (!name) {
       return new Response(JSON.stringify({ ok: false, error: "Name is required." }), {
@@ -70,11 +71,12 @@ const POST = async ({ request }) => {
     const createdAt = insertResult.rows[0]?.created_at;
     if (smtpTransport && process.env.SMTP_FROM && process.env.ASSESSMENT_INTERNAL_TO) {
       const internalRecipients = process.env.ASSESSMENT_INTERNAL_TO.split(",").map((entry) => entry.trim()).filter(Boolean);
+      const intentLabel = submitIntent === "submit-book" ? "paid-priority-call" : "standard-review";
       const internalSubject = `New assessment application: ${name}`;
       const internalText = [
         `Application ID: ${applicationId ?? "n/a"}`,
         `Submitted at: ${createdAt ?? "n/a"}`,
-        `Intent: ${submitIntent}`,
+        `Intent: ${intentLabel}`,
         "",
         `Name: ${name}`,
         `Landing page: ${landingPage || "n/a"}`,
@@ -102,7 +104,7 @@ const POST = async ({ request }) => {
           "Thanks for applying for an assessment with The Vibe Crew.",
           "We received your project details and will follow up with next steps.",
           "",
-          submitIntent === "submit-book" ? "You requested to book a call. We will include booking options in our reply." : "You selected submit only. We will reply by email.",
+          submitIntent === "submit-book" ? "You selected the paid priority-call path. Complete checkout and we will follow up with booking details." : "You selected standard review. Expect a reply within 10 working days.",
           "",
           "— The Vibe Crew"
         ].join("\n");
@@ -119,7 +121,7 @@ const POST = async ({ request }) => {
         ok: true,
         applicationId,
         submitIntent,
-        bookingUrl: submitIntent === "submit-book" ? process.env.BOOKING_URL || null : null,
+        checkoutUrl: submitIntent === "submit-book" ? priorityCheckoutUrl : null,
         emailDelivery: smtpTransport ? "attempted" : "skipped_missing_smtp_config"
       }),
       {
