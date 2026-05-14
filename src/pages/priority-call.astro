@@ -1,0 +1,207 @@
+---
+const brandName = "The Vibe Crew";
+const siteUrl = "https://thevibecrew.dev/priority-call";
+const title = `${brandName} | Book your priority call`;
+const description =
+	"Complete your paid priority-call booking by choosing an available slot with The Vibe Crew.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="canonical" href={siteUrl} />
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<style>
+			:root {
+				color-scheme: light;
+				--bg: #f7efe2;
+				--text: #191919;
+				--muted: #4d4d4d;
+				--line: #191919;
+				--accent: #ffd958;
+				--surface: #ffffff;
+				--shadow: 6px 6px 0 #191919;
+				--radius: 18px;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: var(--bg);
+				color: var(--text);
+				font-family: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+				line-height: 1.5;
+			}
+
+			.page {
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 1.2rem 1rem 4rem;
+			}
+
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.6rem;
+				padding: 0.7rem 0.9rem;
+				border: 2px solid var(--line);
+				background: var(--surface);
+				border-radius: 999px;
+				box-shadow: 3px 3px 0 var(--line);
+			}
+
+			.logo {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
+
+			.logo-mark {
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				border: 2px solid var(--line);
+				background: var(--accent);
+			}
+
+			.nav-link {
+				text-decoration: none;
+				border: 2px solid var(--line);
+				padding: 0.4rem 0.85rem;
+				border-radius: 999px;
+				background: var(--surface);
+				font-weight: 700;
+				color: inherit;
+			}
+
+			.wrap {
+				padding: 1.25rem;
+				border: 2px solid var(--line);
+				border-radius: var(--radius);
+				background: #fff;
+				box-shadow: var(--shadow);
+				display: grid;
+				gap: 1rem;
+			}
+
+			h1 {
+				margin: 0;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				font-size: clamp(1.7rem, 4.2vw, 2.7rem);
+			}
+
+			.lead {
+				margin: 0;
+				color: var(--muted);
+				max-width: 65ch;
+			}
+
+			.cal-wrap {
+				margin-top: 0.4rem;
+				border: 2px solid var(--line);
+				border-radius: 14px;
+				overflow: hidden;
+				min-height: 760px;
+			}
+
+			.cal-frame {
+				width: 100%;
+				height: 760px;
+				overflow: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<header class="nav">
+				<div class="logo">
+					<span class="logo-mark" aria-hidden="true"></span>
+					<span>{brandName}</span>
+				</div>
+				<a class="nav-link" href="/">Back to home</a>
+			</header>
+			<main class="wrap">
+				<h1>Book your priority call</h1>
+				<p class="lead">
+					Payment is complete. Pick your slot below to lock in your priority cleanup call.
+				</p>
+				<div class="cal-wrap">
+					<div id="cal-priority-inline" class="cal-frame"></div>
+				</div>
+				<p class="lead">
+					If the scheduler doesn’t load, use this direct link:
+					<a href="https://cal.com/juno-burger-4hwtxj/15min">cal.com/juno-burger-4hwtxj/15min</a>
+				</p>
+			</main>
+		</div>
+		<script>
+			(function (C, A, L) {
+				let p = function (a, ar) {
+					a.q.push(ar);
+				};
+				let d = C.document;
+				C.Cal =
+					C.Cal ||
+					function () {
+						let cal = C.Cal;
+						let ar = arguments;
+						if (!cal.loaded) {
+							cal.ns = {};
+							cal.q = cal.q || [];
+							d.head.appendChild(d.createElement("script")).src = A;
+							cal.loaded = true;
+						}
+						if (ar[0] === L) {
+							const api = function () {
+								p(api, arguments);
+							};
+							const namespace = ar[1];
+							api.q = api.q || [];
+							if (typeof namespace === "string") {
+								cal.ns[namespace] = cal.ns[namespace] || api;
+								p(cal.ns[namespace], ar);
+								p(cal, ["initNamespace", namespace]);
+							} else {
+								p(cal, ar);
+							}
+							return;
+						}
+						p(cal, ar);
+					};
+			})(window, "https://app.cal.com/embed/embed.js", "init");
+
+			Cal("init", "15min", { origin: "https://cal.com" });
+			Cal.ns["15min"]("inline", {
+				elementOrSelector: "#cal-priority-inline",
+				calLink: "juno-burger-4hwtxj/15min",
+				config: {
+					layout: "month_view",
+					useSlotsViewOnSmallScreen: "true",
+				},
+			});
+			Cal.ns["15min"]("ui", {
+				hideEventTypeDetails: false,
+				layout: "month_view",
+			});
+		</script>
+	</body>
+</html>

@@ -136,7 +136,7 @@ export const POST: APIRoute = async ({ request }) => {
 					'We received your project details and will follow up with next steps.',
 					'',
 					submitIntent === 'submit-book'
-						? 'You selected the paid priority-call path. Complete checkout and we will follow up with booking details.'
+						? 'You selected the paid priority-call path. Complete checkout, then pick a slot on our scheduling page.'
 						: 'You selected standard review. Expect a reply within 10 working days.',
 					'',
 					'— The Vibe Crew',
