@@ -1,39 +1,64 @@
 ---
 const brandName = "The Vibe Crew";
 const siteUrl = "https://thevibecrew.dev";
-const title = `${brandName} | 10+ Years of Engineering Expertise for Vibe-Coded Cleanup`;
+const title = `${brandName} | Restore Shipping Velocity in Unstable Codebases`;
 const description =
-	"The Vibe Crew helps teams stabilize fragile vibe-coded apps, reduce technical debt, and ship maintainable software with more than a decade of engineering expertise.";
+	"If your team slowed down after moving fast, The Vibe Crew diagnoses hidden codebase risk and restores shipping velocity — without a full rewrite.";
 const keywords = [
 	"The Vibe Crew",
-	"technical debt cleanup service",
-	"AI generated code review",
-	"codebase refactoring experts",
-	"software maintainability",
-	"legacy app stabilization",
-	"vibe coding cleanup crew"
+	"shipping velocity",
+	"unstable codebase",
+	"technical debt audit",
+	"fast MVP slowdown",
+	"codebase stabilization",
+	"AI-assisted development risk",
+	"refactor without rewrite"
 ].join(", ");
+
+const icpSignals = [
+	{
+		title: "Post-MVP founders",
+		pain: "You shipped fast, then velocity dropped while effort went up. Parts of the code feel unsafe to touch and bugs are hard to reproduce."
+	},
+	{
+		title: "Solo builders with traction",
+		pain: "You have real users (5k–100k) but scaling hurts. Infra is duct-taped across Supabase, Firebase, and APIs that nobody fully owns."
+	},
+	{
+		title: "Agencies after AI delivery",
+		pain: "You used AI to ship client work faster, and now maintenance is painful. Every change risks breaking something you did not build to last."
+	}
+];
+
+const vibeDebtChecks = [
+	"You are afraid to touch parts of the codebase",
+	"Bugs reappear after you thought they were fixed",
+	"New features take longer than they used to",
+	"No one person fully understands how the system works",
+	"Shipping velocity dropped while team effort increased",
+	"You are hiring or thinking about hiring just to stabilize"
+];
 
 const faqs = [
 	{
-		question: "What does The Vibe Crew do?",
+		question: "Who is this for?",
 		answer:
-			"We review and remediate unstable software projects, especially vibe-coded and AI-generated codebases that became hard to maintain, test, and ship safely."
+			"Founders post-MVP, solo builders with traction, and agencies where shipping slowed down after a fast build phase — especially when AI-assisted code created hidden complexity."
 	},
 	{
-		question: "How quickly should we fix AI-generated technical debt?",
+		question: "What is a Vibe Debt Audit?",
 		answer:
-			"Teams usually need intervention early, because unresolved debt compounds quickly and can block delivery in a matter of months."
+			"A fixed-scope 3–5 day engagement: we map risk, flag what will likely break in the next 3 months, and deliver a prioritized cleanup sequence. It lowers friction before a full remediation engagement."
 	},
 	{
-		question: "What is included in a cleanup engagement?",
+		question: "Do we need a full rewrite?",
 		answer:
-			"Audit, risk map, architecture simplification, refactors, test hardening, and a practical roadmap we execute with clear ownership."
+			"Usually no. Most teams need targeted stabilization, clearer ownership, and a scoped roadmap — not throwing away working product surface area."
 	},
 	{
-		question: "Do you only work with startups?",
+		question: "What happens after the audit?",
 		answer:
-			"No. We support startups, agencies, and product teams that need a software engineering cleanup partner with more than a decade of expertise."
+			"If remediation is worth it for your goals, we execute cleanup in clear scope order: architecture simplification, refactors, and test hardening with predictable delivery rhythm."
 	}
 ];
 
@@ -44,13 +69,13 @@ const organizationSchema = {
 	url: siteUrl,
 	description,
 	areaServed: "Worldwide",
-	serviceType: "Technical debt remediation and codebase cleanup",
+	serviceType: "Codebase risk audit and shipping velocity restoration",
 	knowsAbout: [
+		"Shipping Velocity",
 		"Technical Debt",
 		"AI-assisted Development",
-		"Codebase Maintainability",
-		"Software Refactoring",
-		"Architecture Review"
+		"Codebase Stabilization",
+		"Software Refactoring"
 	]
 };
 
@@ -105,6 +130,7 @@ const faqSchema = {
 				--radius: 18px;
 				--tone-a: #fff9ef;
 				--tone-b: #fff4fb;
+				--signal: #e8f4ff;
 			}
 
 			*,
@@ -152,6 +178,7 @@ const faqSchema = {
 				gap: 0.6rem;
 				font-weight: 800;
 				letter-spacing: -0.02em;
+				text-decoration: none;
 			}
 
 			.logo-mark {
@@ -170,6 +197,7 @@ const faqSchema = {
 				background: var(--text);
 				color: #fff;
 				font-weight: 700;
+				font-size: 0.92rem;
 			}
 
 			.hero {
@@ -204,8 +232,8 @@ const faqSchema = {
 			}
 
 			h1 {
-				font-size: clamp(1.95rem, 4.8vw, 4.2rem);
-				max-width: 16ch;
+				font-size: clamp(1.95rem, 4.8vw, 3.8rem);
+				max-width: 18ch;
 			}
 
 			.hero p {
@@ -213,6 +241,17 @@ const faqSchema = {
 				font-size: clamp(1rem, 2.1vw, 1.25rem);
 				max-width: 63ch;
 				color: var(--muted);
+			}
+
+			.hero-signal {
+				margin: 0;
+				padding: 0.75rem 0.9rem;
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: var(--signal);
+				font-weight: 600;
+				color: var(--text);
+				font-size: 0.98rem;
 			}
 
 			.hero-actions {
@@ -257,6 +296,7 @@ const faqSchema = {
 				display: grid;
 				gap: 1rem;
 			}
+
 			.section-focus {
 				padding: 1.15rem;
 				border: 2px solid var(--line);
@@ -280,6 +320,7 @@ const faqSchema = {
 			.section-title {
 				font-size: clamp(1.4rem, 3vw, 2.2rem);
 			}
+
 			.section-lead {
 				margin: 0;
 				max-width: 64ch;
@@ -303,6 +344,88 @@ const faqSchema = {
 
 			.card p {
 				margin: 0.55rem 0 0;
+				color: var(--muted);
+			}
+
+			.card-flag {
+				display: inline-block;
+				margin-bottom: 0.35rem;
+				font-size: 0.78rem;
+				font-weight: 800;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				color: var(--muted);
+			}
+
+			.checklist {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 0.55rem;
+			}
+
+			.checklist label {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.65rem;
+				padding: 0.8rem 0.9rem;
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: #fff;
+				cursor: pointer;
+				font-weight: 500;
+			}
+
+			.checklist input {
+				margin-top: 0.2rem;
+				width: 1rem;
+				height: 1rem;
+				accent-color: var(--text);
+				flex-shrink: 0;
+			}
+
+			.check-result {
+				margin: 0;
+				padding: 0.85rem 1rem;
+				border: 2px solid var(--line);
+				border-radius: 12px;
+				background: var(--accent-2);
+				font-weight: 600;
+				display: none;
+			}
+
+			.check-result.visible {
+				display: block;
+			}
+
+			.audit-card {
+				padding: 1.1rem;
+				border: 2px solid var(--line);
+				border-radius: 15px;
+				background: var(--surface);
+				box-shadow: 4px 4px 0 var(--line);
+			}
+
+			.audit-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin: 0.6rem 0 0.75rem;
+			}
+
+			.audit-tag {
+				font-size: 0.82rem;
+				font-weight: 700;
+				padding: 0.2rem 0.55rem;
+				border: 2px solid var(--line);
+				border-radius: 999px;
+				background: var(--accent-2);
+			}
+
+			.audit-list {
+				margin: 0.5rem 0 0;
+				padding-left: 1.1rem;
 				color: var(--muted);
 			}
 
@@ -401,114 +524,215 @@ const faqSchema = {
 	<body>
 		<div class="page">
 			<header class="nav">
-				<div class="logo">
+				<a class="logo" href="/">
 					<span class="logo-mark" aria-hidden="true"></span>
 					<span>{brandName}</span>
-				</div>
-				<a class="nav-cta" href="mailto:hello@thevibecrew.dev?subject=Book%20a%20Cleanup%20Call">Book a Cleanup Call</a>
+				</a>
+				<a class="nav-cta" href="/apply">Start Vibe Debt Audit</a>
 			</header>
 
 			<main>
 				<section class="hero">
-					<span class="kicker">10+ years of engineering expertise. Human-led cleanup.</span>
-					<h1>We get vibe-coded projects production-ready.</h1>
+					<span class="kicker">10+ years of engineering expertise · diagnose before we fix</span>
+					<h1>If your team slowed down after moving fast, we fix that.</h1>
+					<p class="hero-signal">
+						Key signal: shipping velocity dropped while effort increased — and nobody fully trusts parts of
+						the codebase anymore.
+					</p>
 					<p>
-						{brandName} is a software engineering team focused on codebase cleanup and technical debt
-						remediation. We help product teams turn fragile, overgrown vibe-coded projects into stable,
-						testable, maintainable systems.
+						{brandName} restores speed, confidence, and predictability in unstable codebases. We start with a
+						fixed-scope audit, then remediate in clear priority order — no vanity rewrite, no open-ended
+						consulting theater.
 					</p>
 					<div class="hero-actions">
-						<a class="btn btn-primary" href="/apply">Apply for assessment</a>
-						<a class="btn btn-secondary" href="mailto:hello@thevibecrew.dev?subject=Book%20a%20Cleanup%20Call">Book a cleanup call</a>
+						<a class="btn btn-primary" href="/apply">Start Vibe Debt Audit</a>
+						<a class="btn btn-secondary" href="#vibe-debt-check">Check your signals</a>
 					</div>
-					<p class="hero-note">2-minute intake on a dedicated application page.</p>
+					<p class="hero-note">3–5 day audit · risk map · what breaks next · cleanup priority · then scoped remediation.</p>
+				</section>
+
+				<section class="section section-focus tone-a" aria-labelledby="icp-title">
+					<div class="section-head">
+						<h2 class="section-title" id="icp-title">You might already be our buyer</h2>
+						<p class="section-lead">
+							Most teams do not self-identify as “vibe coders.” They feel delivery friction, fear touching
+							fragile areas, and watch fires multiply.
+						</p>
+					</div>
+					<div class="cards">
+						{
+							icpSignals.map((item) => (
+								<article class="card span-4">
+									<span class="card-flag">Common pattern</span>
+									<h3>{item.title}</h3>
+									<p>{item.pain}</p>
+								</article>
+							))
+						}
+					</div>
+				</section>
+
+				<section
+					class="section section-focus tone-b"
+					id="vibe-debt-check"
+					aria-labelledby="check-title"
+				>
+					<div class="section-head">
+						<h2 class="section-title" id="check-title">Do you have vibe debt?</h2>
+						<p class="section-lead">
+							This is a self-diagnosis, not a sales quiz. If two or more sound familiar, an audit is
+							usually the right next step.
+						</p>
+					</div>
+					<ul class="checklist" id="vibe-debt-list">
+						{
+							vibeDebtChecks.map((item, index) => (
+								<li>
+									<label>
+										<input type="checkbox" data-check={index} />
+										<span>{item}</span>
+									</label>
+								</li>
+							))
+						}
+					</ul>
+					<p class="check-result" id="check-result" role="status" aria-live="polite"></p>
 				</section>
 
 				<section class="section section-focus tone-a" aria-labelledby="problem-title">
 					<div class="section-head">
-						<h2 class="section-title" id="problem-title">Why this matters right now</h2>
-						<p class="section-lead">Vibe-coded projects can move fast early, then hit hidden debt that slows everything down.</p>
+						<h2 class="section-title" id="problem-title">The pain is velocity, not labels</h2>
+						<p class="section-lead">
+							Fast AI-assisted builds often hide complexity until shipping gets harder, releases feel
+							fragile, and every fix creates new risk.
+						</p>
 					</div>
 					<div class="cards">
 						<article class="card span-4">
-							<h3>AI can compound debt</h3>
-							<p>We often see tools generate new complexity while trying to patch old issues, making systems harder to reason about.</p>
+							<h3>Speed back</h3>
+							<p>Features that used to take days now take weeks because the system fights every change.</p>
 						</article>
 						<article class="card span-4">
-							<h3>Bad debt is fragile debt</h3>
-							<p>Some debt is strategic; unstable debt is different. It creates “house of cards” architecture where small changes break core flows.</p>
+							<h3>Confidence back</h3>
+							<p>Your team avoids touching “cursed” modules, so product decisions get constrained by fear.</p>
 						</article>
 						<article class="card span-4">
-							<h3>Delay increases risk</h3>
-							<p>What looks shippable today can become unmaintainable in months without targeted refactoring and clear engineering ownership.</p>
+							<h3>Fewer fires</h3>
+							<p>Recurring bugs and brittle flows drain focus from growth work you actually care about.</p>
 						</article>
 					</div>
 				</section>
 
-				<section class="section section-focus tone-b" aria-labelledby="services-title">
+				<section class="section section-focus tone-b" aria-labelledby="audit-title">
 					<div class="section-head">
-						<h2 class="section-title" id="services-title">Our 2-step cleanup method</h2>
-						<p class="section-lead">The model is intentionally repetitive: we assess first, then we clean up in clear scope order.</p>
+						<h2 class="section-title" id="audit-title">Start with a Vibe Debt Audit</h2>
+						<p class="section-lead">
+							Lower friction than a full cleanup engagement. Prove the problem, quantify risk, and decide
+							if remediation is worth it for your goals.
+						</p>
+					</div>
+					<article class="audit-card">
+						<h3>Fixed scope. Clear deliverables. Natural upsell path.</h3>
+						<div class="audit-meta">
+							<span class="audit-tag">3–5 days</span>
+							<span class="audit-tag">€1k–€3k</span>
+							<span class="audit-tag">No rewrite by default</span>
+						</div>
+						<p>You get a practical read on how bad things are, what is actually risky, and what to fix first.</p>
+						<ul class="audit-list">
+							<li>Codebase risk map with severity and blast radius</li>
+							<li>“What will likely break in 3 months” forecast</li>
+							<li>Prioritized cleanup sequence tied to business impact</li>
+							<li>Go / no-go recommendation for full remediation</li>
+						</ul>
+						<p style="margin-top: 1rem;">
+							<a class="btn btn-primary" href="/apply">Apply for Vibe Debt Audit</a>
+						</p>
+					</article>
+				</section>
+
+				<section class="section section-focus tone-a" aria-labelledby="services-title">
+					<div class="section-head">
+						<h2 class="section-title" id="services-title">After the audit: scoped cleanup</h2>
+						<p class="section-lead">
+							Same rhythm every engagement — assess first, then execute in priority order without
+							guesswork.
+						</p>
 					</div>
 					<div class="cards">
 						<article class="card span-6">
 							<h3>1) Deep assessment</h3>
-							<p>We assess how bad things are, what is bad, how long it will take to fix, and whether remediation is worth it for your business goals.</p>
+							<p>
+								We quantify debt, ownership gaps, and timeline to stabilize — and whether remediation
+								matches your business goals.
+							</p>
 						</article>
 						<article class="card span-6">
-							<h3>2) Clear scoped roadmap</h3>
-							<p>We deliver a roadmap with issues clearly scoped and prioritized by risk and impact, then we clean up in that order without guesswork.</p>
+							<h3>2) Guided remediation</h3>
+							<p>
+								We refactor fragile areas, harden quality, and restore a codebase your team can ship from
+								again with confidence.
+							</p>
 						</article>
 					</div>
 				</section>
 
-				<section class="section section-focus tone-a" aria-labelledby="answers-title">
+				<section class="section section-focus tone-b" aria-labelledby="answers-title">
 					<div class="section-head">
-						<h2 class="section-title" id="answers-title">Quick answers for search, AI assistants, and decision-makers</h2>
-						<p class="section-lead">Short direct answers improve readability and make the page easier for retrieval systems to parse.</p>
+						<h2 class="section-title" id="answers-title">Quick answers for search and decision-makers</h2>
+						<p class="section-lead">Direct answers people and retrieval systems can parse fast.</p>
 					</div>
 					<div class="answer-grid">
 						<article class="answer">
-							<strong>What is technical debt?</strong>
-							<div>Technical debt is future rework created by fast choices made today. Some debt is acceptable; unstable debt must be resolved quickly.</div>
+							<strong>What do you sell?</strong>
+							<div>
+								Shipping velocity back — through audit-first diagnosis and scoped stabilization, not
+								generic “cleanup.”
+							</div>
 						</article>
 						<article class="answer">
-							<strong>What is AI-assisted development risk?</strong>
-							<div>Without engineering oversight, AI-generated code can produce hidden complexity, brittle integrations, and maintenance bottlenecks.</div>
+							<strong>When should we act?</strong>
+							<div>
+								When velocity drops while effort rises. Waiting usually compounds fragile architecture
+								and firefighting cost.
+							</div>
 						</article>
 						<article class="answer">
-							<strong>Who should hire a cleanup crew?</strong>
-							<div>Any team with growing delivery friction, fragile releases, or oversized codebases that outpaced architecture and quality controls.</div>
+							<strong>Who should reach out?</strong>
+							<div>
+								Founders post-MVP, traction-stage solo builders, and agencies maintaining fast AI-shipped
+								client codebases.
+							</div>
 						</article>
 					</div>
 				</section>
 
-				<section class="section section-focus tone-b" aria-labelledby="process-title">
+				<section class="section section-focus tone-a" aria-labelledby="process-title">
 					<div class="section-head">
-						<h2 class="section-title" id="process-title">How our cleanup process works</h2>
-						<p class="section-lead">We follow the same engagement rhythm every time so delivery stays predictable.</p>
+						<h2 class="section-title" id="process-title">How engagements run</h2>
+						<p class="section-lead">Predictable delivery rhythm from first call to stable shipping again.</p>
 					</div>
 					<ol class="timeline">
 						<li>
-							<span>Step 1 — Initial engagement</span>
-							We align on product goals, urgent failures, and release pressure.
+							<span>Step 1 — Align on pain</span>
+							We map where velocity dropped, what is fragile, and what outcomes matter for the business.
 						</li>
 						<li>
-							<span>Step 2 — Code inspection</span>
-							We inspect architecture and identify where AI-generated changes expanded risk and complexity.
+							<span>Step 2 — Audit and risk map</span>
+							We inspect architecture, ownership, and where fast builds created hidden complexity.
 						</li>
 						<li>
-							<span>Step 3 — Debt analysis</span>
-							We map compounding technical debt, prioritize fixes, and define a practical remediation sequence.
+							<span>Step 3 — Prioritized roadmap</span>
+							We sequence fixes by risk and impact so remediation stays scoped and executable.
 						</li>
 						<li>
-							<span>Step 4 — Guided remediation</span>
-							We refactor fragile areas, harden quality, and clean up the codebase into a maintainable system.
+							<span>Step 4 — Stabilize and hand back velocity</span>
+							We refactor fragile areas, harden quality, and leave a maintainable system your team can own.
 						</li>
 					</ol>
 				</section>
 
-				<section class="section section-focus tone-a" id="faq" aria-labelledby="faq-title">
+				<section class="section section-focus tone-b" id="faq" aria-labelledby="faq-title">
 					<div class="section-head">
 						<h2 class="section-title" id="faq-title">FAQ</h2>
 						<p class="section-lead">Fast answers before we start.</p>
@@ -525,10 +749,10 @@ const faqSchema = {
 					</div>
 				</section>
 
-				<section class="section section-focus tone-b" aria-labelledby="boundaries-title">
+				<section class="section section-focus tone-a" aria-labelledby="boundaries-title">
 					<div class="section-head">
 						<h2 class="section-title" id="boundaries-title">What we don’t do</h2>
-						<p class="section-lead">Clear boundaries keep cleanup fast, scoped, and execution-focused.</p>
+						<p class="section-lead">Clear boundaries keep audits fast and remediation execution-focused.</p>
 					</div>
 					<div class="cards">
 						<article class="card span-4">
@@ -537,29 +761,63 @@ const faqSchema = {
 						</article>
 						<article class="card span-4">
 							<h3>No ongoing maintenance retainer</h3>
-							<p>We don’t do ongoing maintenance after the scoped cleanup engagement.</p>
+							<p>We don’t do ongoing maintenance after the scoped engagement.</p>
 						</article>
 						<article class="card span-4">
 							<h3>No net-new feature builds</h3>
-							<p>We don’t build new features inside cleanup projects.</p>
+							<p>We don’t build new features inside stabilization work.</p>
 						</article>
 					</div>
 				</section>
+
 				<section class="cta" aria-labelledby="cta-title">
-					<h2 id="cta-title">Your app can feel fast again without rebuilding from zero.</h2>
+					<h2 id="cta-title">Get shipping velocity back without starting from zero.</h2>
 					<p>
-						If your vibe-coded codebase is turning into a maintenance trap, bring in {brandName} to
-						stabilize it and get shipping velocity back.
+						If delivery is slowing down while your team works harder, start with a Vibe Debt Audit. We’ll
+						show you what is risky, what breaks next, and what to fix first.
 					</p>
 					<p>
-						<a class="btn btn-primary" href="mailto:hello@thevibecrew.dev?subject=Book%20The%20Vibe%20Crew">Book The Vibe Crew</a>
+						<a class="btn btn-primary" href="/apply">Apply for Vibe Debt Audit</a>
+						<a
+							class="btn btn-secondary"
+							style="margin-left: 0.5rem;"
+							href="mailto:hello@thevibecrew.dev?subject=Vibe%20Debt%20Audit%20Question"
+							>Ask a quick question</a
+						>
 					</p>
 				</section>
 			</main>
 
 			<footer class="footer">
-				<p>{brandName} · Technical debt remediation for AI-assisted software projects · Serving teams worldwide.</p>
+				<p>
+					{brandName} · Restore shipping velocity in unstable codebases · Audit-first remediation for fast-built
+					software · Serving teams worldwide.
+				</p>
 			</footer>
 		</div>
+
+		<script>
+			const boxes = document.querySelectorAll<HTMLInputElement>("#vibe-debt-list input[type='checkbox']");
+			const result = document.getElementById("check-result");
+
+			function updateCheck() {
+				if (!result) return;
+				const count = [...boxes].filter((b) => b.checked).length;
+				if (count >= 2) {
+					result.textContent =
+						`${count} signals checked — you likely have compounding vibe debt. A Vibe Debt Audit is the right next step.`;
+					result.classList.add("visible");
+				} else if (count === 1) {
+					result.textContent =
+						"One signal so far. If more show up in the next few weeks, run the audit before velocity drops further.";
+					result.classList.add("visible");
+				} else {
+					result.textContent = "";
+					result.classList.remove("visible");
+				}
+			}
+
+			boxes.forEach((box) => box.addEventListener("change", updateCheck));
+		</script>
 	</body>
 </html>

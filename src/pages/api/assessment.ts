@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Pool } from 'pg';
 import nodemailer from 'nodemailer';
+import Stripe from 'stripe';
 
 const pool = new Pool(
 	process.env.DATABASE_URL
@@ -28,6 +29,8 @@ const smtpTransport = smtpConfigured
 		})
 	: null;
 
+const stripeClient = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY) : null;
+
 type AssessmentPayload = {
 	name?: unknown;
 	landingPage?: unknown;
@@ -53,7 +56,13 @@ export const POST: APIRoute = async ({ request }) => {
 		const links = clean(payload.links);
 		const submitIntent = clean(payload.submitIntent) === 'submit-book' ? 'submit-book' : 'submit';
 		const priorityCheckoutUrl = process.env.STRIPE_PRIORITY_CALL_URL || process.env.BOOKING_URL || null;
+		const stripePriorityPriceId = process.env.STRIPE_PRIORITY_CALL_PRICE_ID || '';
+		const stripePriorityProductId = process.env.STRIPE_PRIORITY_CALL_PRODUCT_ID || '';
 		const userAgent = request.headers.get('user-agent') ?? '';
+		const requestUrl = new URL(request.url);
+		const successUrl =
+			process.env.STRIPE_PRIORITY_CALL_SUCCESS_URL || `${requestUrl.origin}/priority-call`;
+		const cancelUrl = process.env.STRIPE_PRIORITY_CALL_CANCEL_URL || `${requestUrl.origin}/apply`;
 
 		if (!name) {
 			return new Response(JSON.stringify({ ok: false, error: 'Name is required.' }), {
@@ -96,6 +105,35 @@ export const POST: APIRoute = async ({ request }) => {
 
 		const applicationId = insertResult.rows[0]?.id;
 		const createdAt = insertResult.rows[0]?.created_at;
+		let checkoutUrl = submitIntent === 'submit-book' ? priorityCheckoutUrl : null;
+
+		if (submitIntent === 'submit-book' && stripeClient) {
+			let checkoutPriceId = stripePriorityPriceId;
+
+			if (!checkoutPriceId && stripePriorityProductId) {
+				const product = await stripeClient.products.retrieve(stripePriorityProductId, { expand: ['default_price'] });
+				const defaultPrice = product.default_price;
+
+				if (typeof defaultPrice === 'string') {
+					checkoutPriceId = defaultPrice;
+				} else if (defaultPrice && !defaultPrice.deleted) {
+					checkoutPriceId = defaultPrice.id;
+				}
+			}
+
+			if (checkoutPriceId) {
+				const checkoutSession = await stripeClient.checkout.sessions.create({
+					mode: 'payment',
+					line_items: [{ price: checkoutPriceId, quantity: 1 }],
+					success_url: successUrl,
+					cancel_url: cancelUrl,
+					client_reference_id: applicationId ? String(applicationId) : undefined,
+					metadata: applicationId ? { applicationId: String(applicationId) } : undefined,
+				});
+
+				checkoutUrl = checkoutSession.url || null;
+			}
+		}
 
 		if (smtpTransport && process.env.SMTP_FROM && process.env.ASSESSMENT_INTERNAL_TO) {
 			const internalRecipients = process.env.ASSESSMENT_INTERNAL_TO.split(',').map((entry) => entry.trim()).filter(Boolean);
@@ -156,7 +194,7 @@ export const POST: APIRoute = async ({ request }) => {
 				ok: true,
 				applicationId,
 				submitIntent,
-				checkoutUrl: submitIntent === 'submit-book' ? priorityCheckoutUrl : null,
+				checkoutUrl,
 				emailDelivery: smtpTransport ? 'attempted' : 'skipped_missing_smtp_config',
 			}),
 			{

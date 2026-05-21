@@ -1,9 +1,9 @@
 ---
 const brandName = "The Vibe Crew";
 const siteUrl = "https://thevibecrew.dev/apply";
-const title = `${brandName} | Apply for Assessment`;
+const title = `${brandName} | Apply for Vibe Debt Audit`;
 const description =
-	"Apply for a Vibe Crew assessment by sharing your project details, contact information, concept, and relevant links.";
+	"Apply for a fixed-scope Vibe Debt Audit: share project context, velocity pain signals, and links so we can assess risk and cleanup priority.";
 ---
 
 <!doctype html>
@@ -217,8 +217,8 @@ const description =
 				<a class="nav-link" href="/">Back to home</a>
 			</header>
 			<main class="wrap">
-				<h1>Apply for assessment</h1>
-				<p class="lead">Share your project details and choose your path: standard application review (typically within 10 working days) or paid priority call booking.</p>
+				<h1>Apply for Vibe Debt Audit</h1>
+				<p class="lead">Share where shipping slowed down, what feels fragile, and relevant links. We review fit for a 3–5 day audit and respond with next steps.</p>
 				<form class="apply-form" id="assessment-form" novalidate>
 					<div class="form-grid">
 						<label class="field span-6">
@@ -251,6 +251,7 @@ const description =
 						<button class="btn btn-primary" type="submit" data-intent="submit">Submit application</button>
 						<button class="btn" type="submit" data-intent="submit-book">Pay to book a priority call</button>
 					</div>
+					<p class="form-help">If either side decides not to continue after the call, this fee is reimbursed.</p>
 					<p class="form-status" id="assessment-status" role="status" aria-live="polite"></p>
 				</form>
 			</main>
@@ -356,7 +357,7 @@ const description =
 								if (submitIntent === "submit-book") {
 									statusEl.textContent = checkoutUrl
 										? "Application submitted. Redirecting to Stripe checkout..."
-										: "Application submitted, you can know pay a small fee to book your call";
+										: "Application submitted, you can now pay a small fee to book your call.";
 								} else {
 									statusEl.textContent = "Application submitted. Expect a reply within 10 working days.";
 								}
